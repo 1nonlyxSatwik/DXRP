@@ -1,45 +1,46 @@
-import React, { useContext, useRef, useState } from 'react'
-import './Navbar.css'
-import { Link } from 'react-router-dom'
-import logo from '../Assets/logo.png'
-import cart_icon from '../Assets/cart_icon.png'
-import { ShopContext } from '../../Context/ShopContext'
-import nav_dropdown from '../Assets/nav_dropdown.png'
+import React, { useContext, useEffect, useState } from 'react';
+import './Navbar.css';
+import { Link } from 'react-router-dom';
+import { ShopContext } from '../../Context/ShopContext';
 
 const Navbar = () => {
+  const { getTotalCartItems } = useContext(ShopContext);
+  const totalItems = getTotalCartItems();
+  const [animateCart, setAnimateCart] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  let [menu,setMenu] = useState("shop");
-  const {getTotalCartItems} = useContext(ShopContext);
+  useEffect(() => {
+    if (totalItems > 0) {
+      setAnimateCart(true);
+      const timer = setTimeout(() => setAnimateCart(false), 200);
+      return () => clearTimeout(timer);
+    }
+  }, [totalItems]);
 
-  const menuRef = useRef();
-
-  const dropdown_toggle = (e) => {
-    menuRef.current.classList.toggle('nav-menu-visible');
-    e.target.classList.toggle('open');
-  }
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className='nav'>
-      <Link to='/' onClick={()=>{setMenu("shop")}} style={{ textDecoration: 'none' }} className="nav-logo">
-        <img src={logo} alt="logo" />
-        <p>SatKart</p>
-      </Link>
-      <img onClick={dropdown_toggle} className='nav-dropdown' src={nav_dropdown} alt="" />
-      <ul ref={menuRef} className="nav-menu">
-        <li onClick={()=>{setMenu("shop")}}><Link to='/' style={{ textDecoration: 'none' }}>Shop</Link>{menu==="shop"?<hr/>:<></>}</li>
-        <li onClick={()=>{setMenu("mens")}}><Link to='/mens' style={{ textDecoration: 'none' }}>Men</Link>{menu==="mens"?<hr/>:<></>}</li>
-        <li onClick={()=>{setMenu("womens")}}><Link to='/womens' style={{ textDecoration: 'none' }}>Women</Link>{menu==="womens"?<hr/>:<></>}</li>
-        <li onClick={()=>{setMenu("kids")}}><Link to='/kids' style={{ textDecoration: 'none' }}>Kids</Link>{menu==="kids"?<hr/>:<></>}</li>
-      </ul>
-      <div className="nav-login-cart">
-        {localStorage.getItem('auth-token')
-        ?<button onClick={()=>{localStorage.removeItem('auth-token');window.location.replace("/");}}>Logout</button>
-        :<Link to='/login' style={{ textDecoration: 'none' }}><button>Login</button></Link>}
-        <Link to="/cart"><img src={cart_icon} alt="cart"/></Link>
-        <div className="nav-cart-count">{getTotalCartItems()}</div>
+    <div className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
+      <div className="nav-left">
+        <Link to='/' style={{ textDecoration: 'none' }} className="nav-logo">
+          DXRP
+        </Link>
+      </div>
+
+      <div className="nav-right">
+        <Link to='/' className="nav-link">Drop</Link>
+        <Link to='/bag' className={`nav-link nav-cart-btn ${animateCart ? 'pulse' : ''}`}>
+          bag (<span className={animateCart ? 'animating-number' : ''}>{totalItems}</span>)
+        </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

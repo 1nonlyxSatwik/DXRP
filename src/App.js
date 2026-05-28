@@ -1,41 +1,42 @@
+import React, { useState } from "react";
 import Navbar from "./Components/Navbar/Navbar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Shop from "./Pages/Shop";
-import Cart from "./Pages/Cart";
 import Product from "./Pages/Product";
+import Bag from "./Pages/Bag";
 import Footer from "./Components/Footer/Footer";
-import ShopCategory from "./Pages/ShopCategory";
-import women_banner from "./Components/Assets/banner_women.png";
-import men_banner from "./Components/Assets/banner_mens.png";
-import kid_banner from "./Components/Assets/banner_kids.png";
-import LoginSignup from "./Pages/LoginSignup";
-import Checkout from "./Pages/Checkout";
+import Cursor from "./Components/UI/Cursor";
+import Preloader from "./Components/UI/Preloader";
+import PageTransition from "./Components/UI/PageTransition";
 
+const AppContent = () => {
+  const location = useLocation();
 
-
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+  return (
+    <>
+      <PageTransition />
+      <Navbar />
+      <div className="page-content-fade" key={location.pathname}>
+        <Routes location={location}>
+          <Route path="/" element={<Shop />} />
+          <Route path="/product/:slug" element={<Product />} />
+          <Route path="/bag" element={<Bag />} />
+        </Routes>
+      </div>
+      <Footer />
+    </>
+  );
+};
 
 function App() {
+  const [preloaderDone, setPreloaderDone] = useState(false);
 
   return (
     <div>
-      <ToastContainer />
+      {!preloaderDone && <Preloader onComplete={() => setPreloaderDone(true)} />}
+      <Cursor />
       <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Shop gender="all" />} />
-          <Route path="/mens" element={<ShopCategory banner={men_banner} category="men" />} />
-          <Route path="/womens" element={<ShopCategory banner={women_banner} category="women" />} />
-          <Route path="/kids" element={<ShopCategory banner={kid_banner} category="kid" />} />
-          <Route path='/product' element={<Product />}>
-            <Route path=':productId' element={<Product />} />
-          </Route>
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/login" element={<LoginSignup />} />
-        </Routes>
-        <Footer />
+        <AppContent />
       </Router>
     </div>
   );

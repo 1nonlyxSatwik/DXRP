@@ -1,0 +1,24 @@
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background: #EFEFEA;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate3d(-100px, -100px, 0); /* Initial off-screen */
+  margin-top: -5px;
+  margin-left: -5px;
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, border 0.2s ease, margin 0.2s ease;
+}
+
+.custom-cursor.hovering {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid #EFEFEA;
+  margin-top: -20px;
+  margin-left: -20px;
+}

@@ -1,40 +1,49 @@
-import React, { useEffect, useState } from 'react'
-import Hero from '../Components/Hero/Hero'
-import Popular from '../Components/Popular/Popular'
-import Offers from '../Components/Offers/Offers'
-import NewCollections from '../Components/NewCollections/NewCollections'
-import NewsLetter from '../Components/NewsLetter/NewsLetter'
-
-import { backend_url } from '../config';
+import React, { useContext } from 'react';
+import Hero from '../Components/Hero/Hero';
+import Item from '../Components/Item/Item';
+import { ShopContext } from '../Context/ShopContext';
+import './Shop.css';
 
 const Shop = () => {
+  const { products } = useContext(ShopContext);
 
-  const [popular, setPopular] = useState([]);
-  const [newcollection, setNewCollection] = useState([]);
-
-  const fetchInfo = () => {
-    fetch(`${backend_url}/popularinwomen`)
-      .then((res) => res.json())
-      .then((data) => setPopular(data))
-    fetch(`${backend_url}/newcollections`)
-      .then((res) => res.json())
-      .then((data) => setNewCollection(data))
-  }
-
-  useEffect(() => {
-    fetchInfo();
-  }, [])
-
+  const getCellClass = (idx) => {
+    const mod = idx % 10;
+    if (mod < 3) return 'cell-a';
+    if (mod === 3) return 'cell-b-large';
+    if (mod === 4) return 'cell-b-small';
+    if (mod >= 5 && mod <= 7) return 'cell-a';
+    if (mod === 8 || mod === 9) return 'cell-c';
+    return 'cell-a';
+  };
 
   return (
-    <div>
+    <div className="shop-page">
       <Hero />
-      <Popular data={popular} />
-      <Offers />
-      <NewCollections data={newcollection} />
-      <NewsLetter />
+      <div className="product-grid">
+        {products.map((item, idx) => (
+          <div key={item.id} className={`grid-cell ${getCellClass(idx)}`}>
+            <Item 
+              id={item.id} 
+              name={item.name} 
+              image={item.image}
+              imageHover={item.imageHover}
+              price={item.price} 
+              slug={item.slug}
+            />
+          </div>
+        ))}
+      </div>
+      <div className="marquee">
+        <div className="marquee-content">
+          <span>DISRUPT. REDEFINE. PROGRESS.</span>
+          <span>DISRUPT. REDEFINE. PROGRESS.</span>
+          <span>DISRUPT. REDEFINE. PROGRESS.</span>
+          <span>DISRUPT. REDEFINE. PROGRESS.</span>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Shop
+export default Shop;

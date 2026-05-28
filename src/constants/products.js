@@ -1,0 +1,22 @@
+export const PRODUCTS = [
+  { id: 1, name: "Neutral Grotesk", price: 30, category: "fits", slug: "neutral-grotesk", image: "/images/products/prod1.png", imageHover: "/images/products/prod1.png" },
+  { id: 2, name: "Red Dot Not Award", price: 20, category: "fits", slug: "red-dot-not-award", image: "/images/products/prod2.png", imageHover: "/images/products/prod2.png" },
+  { id: 3, name: "Gridlocked", price: 25, category: "fits", slug: "gridlocked", image: "/images/products/prod3.png", imageHover: "/images/products/prod3.png" },
+  { id: 4, name: "Hello Week 001", price: 30, category: "fits", slug: "hello-week-001", image: "/images/products/prod4.png", imageHover: "/images/products/prod4.png" },
+  { id: 5, name: "Hello Week 002", price: 30, category: "fits", slug: "hello-week-002", image: "/images/products/prod5.png", imageHover: "/images/products/prod5.png" },
+  { id: 6, name: "Monochrome Manifest", price: 30, category: "fits", slug: "monochrome-manifest", image: "/images/products/prod6.png", imageHover: "/images/products/prod6.png" },
+  { id: 7, name: "Positive Space", price: 30, category: "fits", slug: "positive-space", image: "/images/products/prod7.png", imageHover: "/images/products/prod7.png" },
+  { id: 8, name: "Whitespace Matters", price: 33, category: "fits", slug: "whitespace-matters", image: "/images/products/prod8.png", imageHover: "/images/products/prod8.png" },
+  { id: 9, name: "Command + K", price: 15, category: "fits", slug: "command-k", image: "/images/products/prod9.png", imageHover: "/images/products/prod9.png" },
+  { id: 10, name: "Specimen No. HH01", price: 30, category: "fits", slug: "specimen-no-hh01", image: "/images/products/prod10.png", imageHover: "/images/products/prod10.png" },
+  { id: 11, name: "Grid System Go", price: 30, category: "fits", slug: "grid-system-go", image: "/images/products/prod11.png", imageHover: "/images/products/prod11.png" },
+  { id: 12, name: "Off By Design", price: 36.50, category: "fits", slug: "off-by-design", image: "/images/products/prod12.png", imageHover: "/images/products/prod12.png" },
+  { id: 13, name: "Kerned Confidence", price: 25, category: "fits", slug: "kerned-confidence", image: "/images/products/prod13.png", imageHover: "/images/products/prod13.png" },
+  { id: 14, name: "Mono Typographic", price: 40, category: "fits", slug: "mono-typographic", image: "/images/products/prod14.png", imageHover: "/images/products/prod14.png" },
+  { id: 15, name: "Bauhaus Revival", price: 45, category: "fits", slug: "bauhaus-revival", image: "/images/products/prod15.png", imageHover: "/images/products/prod15.png" },
+  { id: 16, name: "Geometric Edge", price: 35, category: "fits", slug: "geometric-edge", image: "/images/products/prod16.png", imageHover: "/images/products/prod16.png" },
+  { id: 17, name: "Abstract Linea", price: 38, category: "fits", slug: "abstract-linea", image: "/images/products/prod17.png", imageHover: "/images/products/prod17.png" },
+  { id: 18, name: "Constructivist Cut", price: 50, category: "fits", slug: "constructivist-cut", image: "/images/products/prod18.png", imageHover: "/images/products/prod18.png" },
+  { id: 19, name: "Minimal Silhouette", price: 32, category: "fits", slug: "minimal-silhouette", image: "/images/products/prod19.png", imageHover: "/images/products/prod19.png" },
+  { id: 20, name: "Brutal Grid", price: 42, category: "fits", slug: "brutal-grid", image: "/images/products/prod20.png", imageHover: "/images/products/prod20.png" }
+];

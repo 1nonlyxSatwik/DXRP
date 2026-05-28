@@ -1,41 +1,42 @@
 import React from 'react'
 import './Footer.css'
-
-import footer_logo from '../Assets/logo_big.png'
-import instagram_icon from '../Assets/instagram_icon.png'
-import pintrest_icon from '../Assets/pintester_icon.png'
-import whatsapp_icon from '../Assets/whatsapp_icon.png'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <div className='footer'>
-      <div className="footer-logo">
-        <img src={footer_logo} alt="" />
-        <p>SatKart</p>
-      </div>
-      <ul className="footer-links">
-        <li>Company</li>
-        <li>Products</li>
-        <li>Offices</li>
-        <li>About</li>
-        <li>Contact</li>
-      </ul>
-      <div className="footer-social-icons">
-        <div className="footer-icons-container">
-          <img src={instagram_icon} alt="" />
-        </div>
-        <div className="footer-icons-container">
-          <img src={pintrest_icon} alt="" />
-        </div>
-        <div className="footer-icons-container">
-          <img src={whatsapp_icon} alt="" />
+    <footer className='footer'>
+      <div className="footer-top">
+        <div className="footer-mantra">
+          <p>no restocks. no apologies.</p>
+          <p>Made to be worn. Or judged. Or both.</p>
         </div>
       </div>
-      <div className="footer-copyright">
-        <hr />
-        <p>Copyright @ 2023 - All Right Reserved.</p>
+      
+      <div className="footer-middle">
+        <div className="footer-year">©2026</div>
+        
+        <div className="footer-links-container">
+          <div className="footer-column">
+            <Link to="#">Privacy Policy</Link>
+          </div>
+          
+          <div className="footer-column">
+            <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer">Dribbble</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter (X)</a>
+          </div>
+          
+          <div className="footer-column">
+            <Link to="#">Work</Link>
+            <Link to="#">Services</Link>
+            <Link to="#">About</Link>
+            <Link to="#">Careers</Link>
+            <Link to="#">Let's talk</Link>
+          </div>
+        </div>
       </div>
-    </div>
+    </footer>
   )
 }
 
