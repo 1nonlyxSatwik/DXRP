@@ -21,13 +21,15 @@ const Item = (props) => {
       { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+    const currentCard = cardRef.current;
+
+    if (currentCard) {
+      observer.observe(currentCard);
     }
 
     return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
+      if (currentCard) {
+        observer.unobserve(currentCard);
       }
     };
   }, []);
